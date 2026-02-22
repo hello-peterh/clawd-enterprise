@@ -1,0 +1,105 @@
+# Default values for clawd-enterprise
+
+# -- Global settings
+nameOverride: ""
+fullnameOverride: ""
+
+# -- Gateway (OpenClaw core)
+gateway:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/hello-peterh/clawd-enterprise-gateway
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  port: 18789
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+  env: {}
+  #   OPENAI_API_KEY: ""
+  #   ANTHROPIC_API_KEY: ""
+
+# -- Dashboard (Next.js)
+dashboard:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/hello-peterh/clawd-enterprise-dashboard
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  port: 3000
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  env:
+    NEXTAUTH_SECRET: "change-me-in-production"
+    NEXTAUTH_URL: "https://clawd.example.com"
+
+# -- PostgreSQL
+postgres:
+  enabled: true
+  image:
+    repository: postgres
+    tag: "16-alpine"
+    pullPolicy: IfNotPresent
+  port: 5432
+  database: clawd_enterprise
+  username: clawd
+  password: "change-me-in-production"
+  storage:
+    size: 10Gi
+    storageClass: ""
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+# -- Ingress
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  #   cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: clawd.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: dashboard
+        - path: /api/gateway
+          pathType: Prefix
+          service: gateway
+  tls: []
+  #   - secretName: clawd-tls
+  #     hosts:
+  #       - clawd.example.com
+
+# -- Service
+service:
+  type: ClusterIP
+
+# -- Image pull secrets
+imagePullSecrets: []
+
+# -- Pod security context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+
+# -- Container security context
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL

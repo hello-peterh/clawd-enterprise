@@ -22,6 +22,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const user = await db.user.findUnique({
           where: { email: credentials.email as string },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            image: true,
+            passwordHash: true,
+            role: true,
+            organizationId: true,
+          },
         });
 
         if (!user?.passwordHash) return null;
@@ -38,6 +47,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           name: user.name,
           email: user.email,
           image: user.image,
+          role: user.role,
+          organizationId: user.organizationId,
         };
       },
     }),
@@ -45,22 +56,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const dbUser = await db.user.findUnique({
-          where: { id: user.id },
-          select: { role: true, organizationId: true },
-        });
-        token.role = dbUser?.role;
-        token.organizationId = dbUser?.organizationId;
+        const u = user as typeof user & {
+          role?: string;
+          organizationId?: string | null;
+        };
+        token.role = u.role;
+        token.organizationId = u.organizationId;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.sub!;
-        session.user.role = token.role as string;
-        session.user.organizationId = token.organizationId as string | null;
+        session.user.role = (token.role as string) ?? "VIEWER";
+        session.user.organizationId =
+          (token.organizationId as string | null) ?? null;
       }
       return session;
+    },
+    authorized({ auth: session }) {
+      return !!session?.user;
     },
   },
 });

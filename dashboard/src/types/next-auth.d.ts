@@ -1,5 +1,7 @@
 import "next-auth";
 
+export type UserRole = "SUPER_ADMIN" | "ORG_ADMIN" | "OPERATOR" | "VIEWER";
+
 declare module "next-auth" {
   interface Session {
     user: {
@@ -7,15 +9,20 @@ declare module "next-auth" {
       name: string | null;
       email: string;
       image: string | null;
-      role: string;
+      role: UserRole;
       organizationId: string | null;
     };
+  }
+
+  interface User {
+    role?: UserRole;
+    organizationId?: string | null;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    role?: string;
+    role?: UserRole;
     organizationId?: string | null;
   }
 }

@@ -5,17 +5,19 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // ─── Organizations ──────────────────────────────────────────
 
 model Organization {
-  id        String   @id @default(cuid())
+  id        String     @id @default(cuid())
   name      String
-  slug      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  slug      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   users     User[]
+  auditLogs AuditLog[]
 }
 
 // ─── Auth (NextAuth compatible) ─────────────────────────────
@@ -81,16 +83,22 @@ model VerificationToken {
 // ─── Audit Log ──────────────────────────────────────────────
 
 model AuditLog {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  action    String
-  target    String?
-  details   Json?
-  ipAddress String?
-  createdAt DateTime @default(now())
+  id           String        @id @default(cuid())
+  timestamp    DateTime      @default(now())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  userEmail    String
+  action       String
+  resourceType String?
+  resourceId   String?
+  details      Json?
+  ipAddress    String?
+  userAgent    String?
+  orgId        String?
+  organization Organization? @relation(fields: [orgId], references: [id])
 
+  @@index([timestamp(sort: Desc)])
   @@index([userId])
+  @@index([orgId])
   @@index([action])
-  @@index([createdAt])
 }

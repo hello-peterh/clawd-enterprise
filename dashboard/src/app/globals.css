@@ -45,6 +45,15 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Clawd brand colors */
+  --color-clawd-primary: var(--clawd-primary);
+  --color-clawd-primary-foreground: var(--clawd-primary-foreground);
+  --color-clawd-accent: var(--clawd-accent);
+  --color-clawd-accent-foreground: var(--clawd-accent-foreground);
+  --color-clawd-success: var(--clawd-success);
+  --color-clawd-warning: var(--clawd-warning);
+  --color-clawd-error: var(--clawd-error);
 }
 
 :root {
@@ -80,6 +89,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Clawd brand palette - light */
+  --clawd-primary: #7c3aed;
+  --clawd-primary-foreground: #ffffff;
+  --clawd-accent: #f59e0b;
+  --clawd-accent-foreground: #451a03;
+  --clawd-success: #10b981;
+  --clawd-warning: #f59e0b;
+  --clawd-error: #f43f5e;
 }
 
 .dark {
@@ -114,6 +132,15 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Clawd brand palette - dark */
+  --clawd-primary: #a78bfa;
+  --clawd-primary-foreground: #1e1b4b;
+  --clawd-accent: #fbbf24;
+  --clawd-accent-foreground: #451a03;
+  --clawd-success: #34d399;
+  --clawd-warning: #fbbf24;
+  --clawd-error: #fb7185;
 }
 
 @layer base {
@@ -124,3 +151,124 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Clawd custom animations */
+@keyframes clawd-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes clawd-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes clawd-pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes clawd-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes clawd-checkmark-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes clawd-dot-float {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-4px);
+  }
+}
+
+.animate-clawd-fade-in {
+  animation: clawd-fade-in 0.5s ease-out forwards;
+}
+
+.animate-clawd-slide-up {
+  animation: clawd-slide-up 0.5s ease-out forwards;
+}
+
+.animate-clawd-pulse-subtle {
+  animation: clawd-pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-clawd-scale-in {
+  animation: clawd-scale-in 0.3s ease-out forwards;
+}
+
+.animate-clawd-checkmark {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: clawd-checkmark-draw 0.5s ease-out 0.3s forwards;
+}
+
+/* Gradient card background */
+.clawd-card-gradient {
+  background: linear-gradient(135deg, var(--clawd-primary) 0%, #6d28d9 50%, #4f46e5 100%);
+}
+
+.dark .clawd-card-gradient {
+  background: linear-gradient(135deg, #4c1d95 0%, #3730a3 50%, #312e81 100%);
+}
+
+/* Subtle card hover effect */
+.clawd-card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clawd-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(124, 58, 237, 0.1), 0 4px 10px -6px rgba(124, 58, 237, 0.05);
+}
+
+.dark .clawd-card-hover:hover {
+  box-shadow: 0 8px 25px -5px rgba(167, 139, 250, 0.15), 0 4px 10px -6px rgba(167, 139, 250, 0.1);
+}
+
+/* Login brand panel grid pattern */
+.clawd-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Staggered animation delays */
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }

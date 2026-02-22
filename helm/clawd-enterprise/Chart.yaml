@@ -1,0 +1,17 @@
+apiVersion: v2
+name: clawd-enterprise
+description: Helm chart for Clawd Enterprise — multi-user AI assistant platform
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - clawd
+  - enterprise
+  - ai
+  - assistant
+  - multi-tenant
+maintainers:
+  - name: Clawd Enterprise Team
+home: https://github.com/hello-peterh/clawd-enterprise
+sources:
+  - https://github.com/hello-peterh/clawd-enterprise

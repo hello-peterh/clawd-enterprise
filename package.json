@@ -104,7 +104,8 @@
     "ui:dev": "node scripts/ui.js dev",
     "ui:install": "node scripts/ui.js install",
     "dashboard:dev": "pnpm --dir dashboard dev",
-    "dashboard:build": "pnpm --dir dashboard build"
+    "dashboard:build": "pnpm --dir dashboard build",
+    "dashboard:start": "pnpm --dir dashboard start"
   },
   "dependencies": {
     "@agentclientprotocol/sdk": "0.14.1",

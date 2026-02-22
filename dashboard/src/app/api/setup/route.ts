@@ -2,9 +2,21 @@ import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { db } from "@/lib/db";
 
+export async function GET() {
+  try {
+    const count = await db.user.count();
+    return NextResponse.json({ setupRequired: count === 0 });
+  } catch (error) {
+    console.error("Setup status check error:", error);
+    return NextResponse.json(
+      { error: "Could not check setup status" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(req: Request) {
   try {
-    // Check if any users exist — setup only works for first user
     const existingUsers = await db.user.count();
     if (existingUsers > 0) {
       return NextResponse.json(
@@ -13,7 +25,13 @@ export async function POST(req: Request) {
       );
     }
 
-    const { name, email, password, orgName } = await req.json();
+    const body = await req.json();
+    const { name, email, password, orgName } = body as {
+      name?: string;
+      email?: string;
+      password?: string;
+      orgName?: string;
+    };
 
     if (!name || !email || !password || !orgName) {
       return NextResponse.json(
@@ -29,6 +47,14 @@ export async function POST(req: Request) {
       );
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 }
+      );
+    }
+
     const passwordHash = await hash(password, 12);
 
     const slug = orgName
@@ -36,21 +62,30 @@ export async function POST(req: Request) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
 
-    const org = await db.organization.create({
-      data: { name: orgName, slug },
+    if (!slug) {
+      return NextResponse.json(
+        { error: "Organization name must contain at least one alphanumeric character" },
+        { status: 400 }
+      );
+    }
+
+    await db.$transaction(async (tx) => {
+      const org = await tx.organization.create({
+        data: { name: orgName, slug },
+      });
+
+      await tx.user.create({
+        data: {
+          name,
+          email,
+          passwordHash,
+          role: "SUPER_ADMIN",
+          organizationId: org.id,
+        },
+      });
     });
 
-    await db.user.create({
-      data: {
-        name,
-        email,
-        passwordHash,
-        role: "SUPER_ADMIN",
-        organizationId: org.id,
-      },
-    });
-
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {
     console.error("Setup error:", error);
     return NextResponse.json(

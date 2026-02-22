@@ -56,6 +56,12 @@ services:
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clawd -d clawd_enterprise"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
 
   clawd-dashboard:
     build:
@@ -70,8 +76,10 @@ services:
     ports:
       - "${DASHBOARD_PORT:-3000}:3000"
     depends_on:
-      - postgres
-      - openclaw-gateway
+      postgres:
+        condition: service_healthy
+      openclaw-gateway:
+        condition: service_started
     restart: unless-stopped
 
 volumes:

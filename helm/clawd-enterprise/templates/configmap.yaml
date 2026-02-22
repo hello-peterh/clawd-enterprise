@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "clawd-enterprise.fullname" . }}-config
+  labels:
+    {{- include "clawd-enterprise.labels" . | nindent 4 }}
+data:
+  NODE_ENV: "production"
+  GATEWAY_PORT: {{ .Values.gateway.port | quote }}
+  DASHBOARD_PORT: {{ .Values.dashboard.port | quote }}
+  POSTGRES_HOST: "{{ include "clawd-enterprise.fullname" . }}-postgres"
+  POSTGRES_PORT: {{ .Values.postgres.port | quote }}
+  POSTGRES_DB: {{ .Values.postgres.database | quote }}
