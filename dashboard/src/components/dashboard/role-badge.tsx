@@ -12,7 +12,7 @@ const roleConfig: Record<
   SUPER_ADMIN: {
     label: "Super Admin",
     className:
-      "bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-950/50 dark:text-violet-400 dark:border-violet-800",
+      "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800",
   },
   ORG_ADMIN: {
     label: "Org Admin",

@@ -27,7 +27,7 @@ function getInitials(name: string): string {
 
 function getAvatarColor(name: string): string {
   const colors = [
-    "bg-violet-100 text-violet-700 dark:bg-violet-950/50 dark:text-violet-400",
+    "bg-blue-100 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400",
     "bg-blue-100 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400",
     "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400",
     "bg-amber-100 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400",
@@ -74,7 +74,7 @@ export function ActivityFeed({ items, className }: ActivityFeedProps) {
       ))}
       {items.length > 0 && (
         <div className="pt-3">
-          <button className="text-sm font-medium text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300 transition-colors">
+          <button className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
             View all activity
           </button>
         </div>

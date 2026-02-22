@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -5,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Radio,
@@ -21,7 +22,7 @@ import {
 } from "lucide-react";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { ActivityFeed, type ActivityItem } from "@/components/dashboard/activity-feed";
-import { auth } from "@/lib/auth";
+import { useSession } from "next-auth/react";
 
 const stats = [
   {
@@ -119,8 +120,8 @@ function formatDate(): string {
   });
 }
 
-export default async function DashboardPage() {
-  const session = await auth();
+export default function DashboardPage() {
+  const { data: session } = useSession();
   const userName = session?.user?.name?.split(" ")[0] ?? "there";
   const completedSteps = gettingStartedSteps.filter((s) => s.done).length;
   const totalSteps = gettingStartedSteps.length;
@@ -169,7 +170,7 @@ export default async function DashboardPage() {
 
       {/* Quick actions */}
       <div className="flex flex-wrap gap-3">
-        <Button className="gap-1.5 bg-gradient-to-r from-violet-600 to-violet-700 text-white hover:from-violet-700 hover:to-violet-800 dark:from-violet-600 dark:to-violet-700 dark:hover:from-violet-500 dark:hover:to-violet-600 shadow-md shadow-violet-500/20">
+        <Button className="gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-500 dark:hover:to-blue-600 shadow-md shadow-blue-500/20">
           <Plus className="h-4 w-4" />
           Add Channel
         </Button>
@@ -213,7 +214,7 @@ export default async function DashboardPage() {
               </div>
               <div className="h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-violet-500 to-violet-600 transition-all duration-500"
+                  className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
                   style={{ width: `${progress}%` }}
                 />
               </div>

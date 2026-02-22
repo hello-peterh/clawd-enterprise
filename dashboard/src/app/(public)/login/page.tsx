@@ -46,7 +46,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen animate-clawd-fade-in">
       {/* Left brand panel */}
-      <div className="relative hidden w-1/2 overflow-hidden bg-gradient-to-br from-violet-700 via-violet-600 to-indigo-700 lg:flex lg:flex-col lg:items-center lg:justify-center">
+      <div className="relative hidden w-1/2 overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 lg:flex lg:flex-col lg:items-center lg:justify-center">
         {/* Grid pattern overlay */}
         <div className="clawd-grid-pattern absolute inset-0" />
 
@@ -74,7 +74,7 @@ export default function LoginPage() {
           <h1 className="mb-3 text-4xl font-bold text-white">
             Clawd Enterprise
           </h1>
-          <p className="text-lg text-violet-100">
+          <p className="text-lg text-blue-100">
             Enterprise AI Assistant Platform
           </p>
           <div className="mt-12 space-y-4 text-left">
@@ -84,7 +84,7 @@ export default function LoginPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-white">30+ Integrations</p>
-                <p className="text-xs text-violet-200">
+                <p className="text-xs text-blue-200">
                   Connect Slack, Teams, Discord, and more
                 </p>
               </div>
@@ -95,7 +95,7 @@ export default function LoginPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-white">Enterprise RBAC</p>
-                <p className="text-xs text-violet-200">
+                <p className="text-xs text-blue-200">
                   Role-based access control with audit logging
                 </p>
               </div>
@@ -106,7 +106,7 @@ export default function LoginPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-white">AI-Powered</p>
-                <p className="text-xs text-violet-200">
+                <p className="text-xs text-blue-200">
                   Multi-model support with intelligent routing
                 </p>
               </div>
@@ -120,7 +120,7 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           {/* Mobile logo */}
           <div className="mb-8 flex items-center justify-center gap-2 lg:hidden">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600">
               <Sparkles className="h-5 w-5 text-white" />
             </div>
             <span className="text-xl font-bold">Clawd Enterprise</span>
@@ -185,7 +185,7 @@ export default function LoginPage() {
                 )}
                 <Button
                   type="submit"
-                  className="w-full h-10 bg-gradient-to-r from-violet-600 to-violet-700 text-white hover:from-violet-700 hover:to-violet-800 dark:from-violet-600 dark:to-violet-700 dark:hover:from-violet-500 dark:hover:to-violet-600 shadow-md shadow-violet-500/20"
+                  className="w-full h-10 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-500 dark:hover:to-blue-600 shadow-md shadow-blue-500/20"
                   disabled={loading}
                 >
                   {loading ? (
@@ -221,7 +221,7 @@ export default function LoginPage() {
 
           <p className="mt-8 text-center text-xs text-muted-foreground">
             Powered by{" "}
-            <span className="font-medium text-violet-600 dark:text-violet-400">
+            <span className="font-medium text-blue-600 dark:text-blue-400">
               Clawd
             </span>
           </p>

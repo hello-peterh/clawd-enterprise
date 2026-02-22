@@ -146,11 +146,11 @@ export default function SetupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 via-white to-violet-50 dark:from-slate-950 dark:via-slate-900 dark:to-violet-950/20 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/20 px-4">
       <div className="w-full max-w-lg animate-clawd-fade-in">
         {/* Logo */}
         <div className="mb-8 flex items-center justify-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 shadow-lg shadow-violet-500/30">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-lg shadow-blue-500/30">
             <Sparkles className="h-5 w-5 text-white" />
           </div>
           <span className="text-xl font-bold">Clawd Enterprise</span>
@@ -164,9 +164,9 @@ export default function SetupPage() {
                 <div
                   className={`flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                     currentStep > step.id
-                      ? "border-violet-600 bg-violet-600 text-white"
+                      ? "border-blue-600 bg-blue-600 text-white"
                       : currentStep === step.id
-                        ? "border-violet-600 bg-violet-50 text-violet-600 dark:bg-violet-950/50 dark:text-violet-400 dark:border-violet-400"
+                        ? "border-blue-600 bg-blue-50 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-400"
                         : "border-slate-200 bg-white text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500"
                   }`}
                 >
@@ -179,7 +179,7 @@ export default function SetupPage() {
                 <span
                   className={`mt-2 text-xs font-medium ${
                     currentStep >= step.id
-                      ? "text-violet-600 dark:text-violet-400"
+                      ? "text-blue-600 dark:text-blue-400"
                       : "text-muted-foreground"
                   }`}
                 >
@@ -190,7 +190,7 @@ export default function SetupPage() {
                 <div
                   className={`mx-3 mb-6 h-0.5 w-16 rounded-full transition-colors duration-300 ${
                     currentStep > step.id
-                      ? "bg-violet-600 dark:bg-violet-400"
+                      ? "bg-blue-600 dark:bg-blue-400"
                       : "bg-slate-200 dark:bg-slate-700"
                   }`}
                 />
@@ -341,11 +341,11 @@ export default function SetupPage() {
                   </p>
                 </div>
 
-                <div className="mt-4 rounded-lg bg-violet-50 p-4 dark:bg-violet-950/30 ring-1 ring-violet-100 dark:ring-violet-800/50">
-                  <h4 className="text-sm font-medium text-violet-900 dark:text-violet-300">
+                <div className="mt-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-950/30 ring-1 ring-blue-100 dark:ring-blue-800/50">
+                  <h4 className="text-sm font-medium text-blue-900 dark:text-blue-300">
                     What happens next?
                   </h4>
-                  <ul className="mt-2 space-y-1.5 text-xs text-violet-700 dark:text-violet-400">
+                  <ul className="mt-2 space-y-1.5 text-xs text-blue-700 dark:text-blue-400">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 shrink-0" />
                       <span>Your admin account will be created</span>
@@ -434,7 +434,7 @@ export default function SetupPage() {
                 <Button
                   onClick={handleNext}
                   disabled={loading}
-                  className="gap-1.5 bg-gradient-to-r from-violet-600 to-violet-700 text-white hover:from-violet-700 hover:to-violet-800 dark:from-violet-600 dark:to-violet-700 dark:hover:from-violet-500 dark:hover:to-violet-600 shadow-md shadow-violet-500/20"
+                  className="gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-500 dark:hover:to-blue-600 shadow-md shadow-blue-500/20"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -469,7 +469,7 @@ export default function SetupPage() {
               ) : (
                 <Button
                   onClick={() => router.push("/login")}
-                  className="w-full gap-1.5 bg-gradient-to-r from-violet-600 to-violet-700 text-white hover:from-violet-700 hover:to-violet-800 dark:from-violet-600 dark:to-violet-700 dark:hover:from-violet-500 dark:hover:to-violet-600 shadow-md shadow-violet-500/20"
+                  className="w-full gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-500 dark:hover:to-blue-600 shadow-md shadow-blue-500/20"
                 >
                   <Sparkles className="h-4 w-4" />
                   Get Started
@@ -481,7 +481,7 @@ export default function SetupPage() {
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
           Powered by{" "}
-          <span className="font-medium text-violet-600 dark:text-violet-400">
+          <span className="font-medium text-blue-600 dark:text-blue-400">
             Clawd
           </span>
         </p>

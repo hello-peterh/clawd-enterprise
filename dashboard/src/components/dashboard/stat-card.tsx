@@ -34,8 +34,8 @@ export function StatCard({
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}
         </CardTitle>
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 dark:bg-violet-950/50">
-          <Icon className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/50">
+          <Icon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
         </div>
       </CardHeader>
       <CardContent className="space-y-1">

@@ -75,12 +75,12 @@ export function AppSidebar({ user }: AppSidebarProps) {
     <Sidebar>
       <SidebarHeader className="border-b px-4 py-4">
         <Link href="/dashboard" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-violet-700 shadow-sm shadow-violet-500/30">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 shadow-sm shadow-blue-500/30">
             <Sparkles className="h-4 w-4 text-white" />
           </div>
           <div className="flex items-center gap-1.5">
             <h1 className="text-base font-bold leading-none">Clawd</h1>
-            <span className="inline-flex items-center rounded-md bg-violet-100 px-1.5 py-0.5 text-[10px] font-semibold text-violet-700 dark:bg-violet-950/50 dark:text-violet-400">
+            <span className="inline-flex items-center rounded-md bg-blue-100 px-1.5 py-0.5 text-[10px] font-semibold text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
               Enterprise
             </span>
           </div>
@@ -104,7 +104,7 @@ export function AppSidebar({ user }: AppSidebarProps) {
                       className={cn(
                         "relative transition-colors",
                         isActive &&
-                          "bg-violet-50 text-violet-700 dark:bg-violet-950/30 dark:text-violet-400 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:rounded-full before:bg-violet-600 dark:before:bg-violet-400"
+                          "bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:rounded-full before:bg-blue-600 dark:before:bg-blue-400"
                       )}
                     >
                       <Link href={item.href}>
@@ -112,7 +112,7 @@ export function AppSidebar({ user }: AppSidebarProps) {
                           className={cn(
                             "h-4 w-4",
                             isActive
-                              ? "text-violet-600 dark:text-violet-400"
+                              ? "text-blue-600 dark:text-blue-400"
                               : "text-muted-foreground"
                           )}
                         />
@@ -153,7 +153,7 @@ export function AppSidebar({ user }: AppSidebarProps) {
                         className={cn(
                           "relative transition-colors",
                           isActive &&
-                            "bg-violet-50 text-violet-700 dark:bg-violet-950/30 dark:text-violet-400 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:rounded-full before:bg-violet-600 dark:before:bg-violet-400"
+                            "bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:rounded-full before:bg-blue-600 dark:before:bg-blue-400"
                         )}
                       >
                         <Link href={item.href}>
@@ -161,7 +161,7 @@ export function AppSidebar({ user }: AppSidebarProps) {
                             className={cn(
                               "h-4 w-4",
                               isActive
-                                ? "text-violet-600 dark:text-violet-400"
+                                ? "text-blue-600 dark:text-blue-400"
                                 : "text-muted-foreground"
                             )}
                           />
@@ -179,7 +179,7 @@ export function AppSidebar({ user }: AppSidebarProps) {
 
       <SidebarFooter className="border-t px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-violet-600 text-xs font-semibold text-white shadow-sm">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-xs font-semibold text-white shadow-sm">
             {user.name?.charAt(0)?.toUpperCase() ?? "?"}
           </div>
           <div className="flex-1 min-w-0">

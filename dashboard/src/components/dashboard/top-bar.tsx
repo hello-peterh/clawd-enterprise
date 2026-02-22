@@ -144,7 +144,7 @@ export function TopBar({ user }: TopBarProps) {
             <Avatar className="h-7 w-7">
               <AvatarFallback
                 className={cn(
-                  "text-xs font-semibold bg-gradient-to-br from-violet-500 to-violet-600 text-white"
+                  "text-xs font-semibold bg-gradient-to-br from-blue-500 to-blue-600 text-white"
                 )}
               >
                 {user.name?.charAt(0)?.toUpperCase() ?? "?"}
